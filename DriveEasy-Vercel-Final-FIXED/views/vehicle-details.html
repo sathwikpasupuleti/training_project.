@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DriveEasy - Vehicle Details</title>
+  <meta name="description" content="View detailed vehicle specifications, pricing, and availability on DriveEasy." />
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/details.css" />
+</head>
+<body>
+
+  <!-- Universal Header with Back Button -->
+  <header class="app-header">
+    <div class="header-container">
+      <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <button onclick="history.back()" class="icon-btn" aria-label="Go back" title="Go back">
+          <span class="material-symbols-outlined">arrow_back</span>
+        </button>
+        <a href="/views/index.html" class="brand-lockup">
+          <img src="https://lh3.googleusercontent.com/aida/AEtjO1U0Hgq5o9H0v91FIeZ5d_v5CYsQRGkhGOLExAg4a-Q8JlMFLLOYEvjamDuppg0qYsyqPQyqaoqzNYT0oSZIsR3jSw83IY0WyNXa3TDBNhBJDNoSNatuA-lEVObZaB-h2oqMQgcp1QJQZCLigVRTezIIRcPRCTiyifgm-Ql4hiRN35LYVcGo93vmMCEWhcBHNPUlUn3Q04SUwkLjmz8xaSBvOqnGvKGfN3qLr7zZ-tp2VuCo-IC990Amjkc" alt="DriveEasy Logo" class="brand-logo-img" />
+          <span class="brand-title" style="font-size: 1.125rem;">Vehicle Details</span>
+        </a>
+      </div>
+
+      <nav class="nav-links">
+        <a href="/views/index.html" class="nav-link">Home</a>
+        <a href="/views/vehicles.html" class="nav-link">Vehicles</a>
+        <a href="/views/my-bookings.html" class="nav-link">My Bookings</a>
+        <a href="/views/dashboard.html" class="nav-link">Dashboard</a>
+      </nav>
+
+      <div class="header-actions">
+        <button aria-label="Search" class="icon-btn" title="Search">
+          <span class="material-symbols-outlined">search</span>
+        </button>
+        <div id="user-profile-widget">
+          <a href="/views/login.html" class="user-avatar-btn" title="Sign In">
+            <span class="material-symbols-outlined" style="font-size: 20px;">person</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="details-page-wrapper" id="details-content">
+      
+      <!-- Loading Placeholder -->
+      <div id="loading-state" style="text-align: center; padding: 4rem 1rem; color: var(--secondary);">
+        Loading vehicle details...
+      </div>
+
+      <!-- Injected by vehicle-details.js once data is loaded -->
+      <div id="vehicle-details-view" style="display: none;">
+        
+        <!-- Image Gallery Section -->
+        <section class="gallery-section">
+          <div class="carousel-main">
+            <img id="main-vehicle-img" src="" alt="Vehicle" class="carousel-img" />
+            <button class="carousel-nav-btn prev" id="carousel-prev" aria-label="Previous photo">
+              <span class="material-symbols-outlined" style="font-size: 20px;">chevron_left</span>
+            </button>
+            <button class="carousel-nav-btn next" id="carousel-next" aria-label="Next photo">
+              <span class="material-symbols-outlined" style="font-size: 20px;">chevron_right</span>
+            </button>
+            <div class="carousel-dots-row">
+              <span class="carousel-dot active"></span>
+              <span class="carousel-dot"></span>
+              <span class="carousel-dot"></span>
+              <span class="carousel-dot"></span>
+            </div>
+          </div>
+
+          <!-- Thumbnail Strip -->
+          <div class="thumb-strip" id="thumbnail-strip">
+            <!-- Injected by JS -->
+          </div>
+        </section>
+
+        <!-- Vehicle Title, Status, and Quick Spec Chips -->
+        <div class="details-meta-header">
+          <div class="title-status-row">
+            <h1 class="details-vehicle-name" id="vehicle-name">Vehicle Name</h1>
+            <span id="availability-pill" class="status-pill confirmed">
+              <span class="dot"></span>
+              <span id="availability-status-text">Available</span>
+            </span>
+          </div>
+
+          <div class="price-day-row">
+            <span class="details-price" id="vehicle-price">₹1,500</span>
+            <span class="details-price-unit">/ day</span>
+          </div>
+
+          <div class="quick-specs-wrap" id="quick-specs-container">
+            <!-- Chips injected by JS -->
+          </div>
+        </div>
+
+        <!-- Specifications Card -->
+        <div class="detail-card">
+          <h2 class="detail-card-title">
+            <span class="material-symbols-outlined">tune</span>
+            Specifications
+          </h2>
+          <div class="specs-grid" id="specs-grid-data">
+            <!-- Injected by JS -->
+          </div>
+        </div>
+
+        <!-- Select Rental Dates Card -->
+        <div class="detail-card">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
+            <h2 class="detail-card-title" style="margin: 0;">
+              <span class="material-symbols-outlined">calendar_month</span>
+              Select Rental Dates
+            </h2>
+            <span id="duration-badge-text" style="font-size: 0.75rem; font-weight: 700; color: var(--primary-container);">
+              2 Days Rental
+            </span>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 0.75rem;">
+            <label class="form-label" for="details-pickup-loc">Pickup Location</label>
+            <select id="details-pickup-loc" class="form-select">
+              <option value="Guntur Hub, Andhra Pradesh">Guntur Hub, Andhra Pradesh</option>
+              <option value="Vijayawada Airport (VGA)">Vijayawada Airport (VGA)</option>
+              <option value="Hyderabad (Hitech City)">Hyderabad (Hitech City)</option>
+              <option value="Visakhapatnam (Beach Road)">Visakhapatnam (Beach Road)</option>
+            </select>
+          </div>
+
+          <div class="dates-picker-row">
+            <div class="form-group" style="margin: 0;">
+              <label class="form-label" for="details-start-date">Start Date</label>
+              <input type="date" id="details-start-date" class="form-input" />
+            </div>
+            <div class="form-group" style="margin: 0;">
+              <label class="form-label" for="details-end-date">End Date</label>
+              <input type="date" id="details-end-date" class="form-input" />
+            </div>
+          </div>
+
+          <button id="check-avail-btn" class="btn-primary" style="width: 100%; height: 44px; margin-top: 0.5rem;">
+            <span class="material-symbols-outlined" style="font-size: 18px;">verified</span>
+            <span>Check Availability</span>
+          </button>
+
+          <div id="avail-notice-box" class="availability-alert">
+            <!-- Injected by JS -->
+          </div>
+        </div>
+
+        <!-- Description Card -->
+        <div class="detail-card">
+          <h2 class="detail-card-title">
+            <span class="material-symbols-outlined">info</span>
+            Description
+          </h2>
+          <p id="vehicle-desc-text" style="color: var(--on-surface-variant); font-size: 0.875rem; line-height: 1.6;">
+            Vehicle description goes here.
+          </p>
+        </div>
+
+        <!-- Pickup Hub Location Preview Card -->
+        <div class="detail-card">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
+            <h2 class="detail-card-title" style="margin: 0;">
+              <span class="material-symbols-outlined">near_me</span>
+              Pickup Hub
+            </h2>
+            <span style="font-size: 0.75rem; color: var(--secondary);">2.4 km away</span>
+          </div>
+          <div class="map-preview-box" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBkWy5dTV7_VU4Y1PRg8SgANUDsI6rm0aP9RhOXugfap5k8umfBoql5SSmaffirvFAvyzfEVzYO_ts4aL_z8KAoCs4n8m6wSaGqePglawWZDIrkWFOxGQWN2jMAPJJ0R5PNpMN--ZbsjlYtTTge1RVfKvPb7yT_tURLoU7iDrOfsdOiPpwGO-PozmLBzuZnD-vx2MsMByd_E4T-LxJpig8jMiitGPlGP1_MlH5vN77ZkTJt9FIWJfVi');">
+            <div class="map-overlay-text">
+              <span class="material-symbols-outlined" style="font-size: 18px; margin-right: 4px;">location_on</span>
+              <span id="hub-name-overlay">DriveEasy Hub • Main Road, Arundalpet, Guntur</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Sticky Bottom Action Bar -->
+  <div class="sticky-bottom-bar" id="sticky-action-bar" style="display: none;">
+    <div class="bottom-bar-inner">
+      <div class="bottom-price-col">
+        <span class="bottom-price-label">Total Rental Price</span>
+        <div style="display: flex; align-items: baseline; gap: 4px;">
+          <span class="bottom-price-val" id="bottom-total-price">₹1,500</span>
+          <span style="font-size: 0.75rem; color: var(--on-surface-variant);" id="bottom-price-unit">/ day</span>
+        </div>
+      </div>
+      <button id="rent-now-btn" class="btn-primary" style="height: 48px; padding: 0 2rem; font-size: 1rem;">
+        <span>Rent Now</span>
+        <span class="material-symbols-outlined" style="font-size: 20px;">arrow_forward</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="../exception/apiException.js"></script>
+  <script src="../exception/validationException.js"></script>
+  <script src="../js/service/apiConfig.js"></script>
+  <script src="../js/service/vehicleService.js"></script>
+  <script src="../js/service/bookingService.js"></script>
+  <script src="../js/service/userService.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/vehicle-details.js"></script>
+</body>
+</html>

@@ -1,0 +1,244 @@
+/* ==========================================================================
+   Booking Page Styles
+   Matching Google Stitch imported screen 4 (Booking / Checkout Flow)
+   ========================================================================== */
+
+.booking-page-container {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 1.25rem 1rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.checkout-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.25rem;
+}
+
+.step-eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--secondary);
+}
+
+.checkout-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--on-surface);
+}
+
+.guarantee-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-full);
+  background-color: var(--surface-container-high);
+  color: var(--primary-container);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Vehicle Summary Box in Checkout */
+.checkout-vehicle-preview {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.875rem;
+  background-color: var(--surface-container-low);
+  border-radius: var(--radius-lg);
+}
+
+.checkout-thumb {
+  width: 80px;
+  height: 60px;
+  border-radius: var(--radius-md);
+  background-color: #fff;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkout-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.checkout-vehicle-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.checkout-vehicle-info h3 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--on-surface);
+}
+
+.checkout-vehicle-info p {
+  color: var(--primary-container);
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+
+.checkout-schedule-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(237, 244, 255, 0.7);
+  padding: 0.75rem;
+  border-radius: var(--radius-md);
+  margin-top: 0.75rem;
+}
+
+.schedule-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.schedule-label {
+  font-size: 0.6875rem;
+  color: var(--secondary);
+}
+
+.schedule-val {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--on-surface);
+}
+
+.duration-tag {
+  background-color: var(--surface-container);
+  color: var(--primary-container);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-full);
+}
+
+/* Cost Breakdown Rows */
+.cost-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.35rem 0;
+  font-size: 0.875rem;
+}
+
+.cost-label {
+  color: var(--secondary);
+}
+
+.cost-val {
+  font-weight: 600;
+  color: var(--on-surface);
+}
+
+.total-accent-bar {
+  background-color: var(--surface-container-low);
+  padding: 0.875rem;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}
+
+.total-accent-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--secondary);
+}
+
+.total-accent-sub {
+  font-size: 0.6875rem;
+  color: var(--secondary);
+}
+
+.total-accent-price {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary-container);
+}
+
+/* Payment Selector Buttons */
+.payment-methods-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.payment-method-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.875rem 0.5rem;
+  border-radius: var(--radius-lg);
+  background-color: var(--surface-container-low);
+  border: 2px solid transparent;
+  color: var(--secondary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.payment-method-card .material-symbols-outlined {
+  font-size: 24px;
+}
+
+.payment-method-card span:last-child {
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.payment-method-card.active {
+  background-color: var(--surface-container-highest);
+  color: var(--primary-container);
+  border-color: var(--primary-container);
+}
+
+.payment-hint-box {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border-radius: var(--radius-md);
+  background-color: var(--surface-container-low);
+  font-size: 0.75rem;
+  color: var(--on-surface);
+}
+
+.payment-hint-box .material-symbols-outlined {
+  color: var(--primary-container);
+  font-size: 20px;
+}
+
+/* Trust Guarantee Row */
+.trust-checkout-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  text-align: center;
+  color: var(--secondary);
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.trust-checkout-footer .material-symbols-outlined {
+  font-size: 16px;
+}

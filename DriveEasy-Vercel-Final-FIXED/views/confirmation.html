@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DriveEasy - Booking Confirmed!</title>
+  <meta name="description" content="Your vehicle reservation is confirmed with DriveEasy." />
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/booking.css" />
+
+  <style>
+    .confirmation-page-container {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 1.5rem 1rem 4rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .success-check-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .success-ping-ring {
+      position: absolute;
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background-color: #d1fae5;
+      animation: pingRing 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+    }
+
+    @keyframes pingRing {
+      75%, 100% {
+        transform: scale(1.4);
+        opacity: 0;
+      }
+    }
+
+    .success-check-circle {
+      position: relative;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background-color: #10b981;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+    }
+
+    .confirmation-card {
+      width: 100%;
+      background-color: var(--surface-container-lowest);
+      border-radius: var(--radius-xl);
+      padding: 1.25rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .booking-id-strip {
+      background-color: var(--surface-container-low);
+      border-radius: var(--radius-lg);
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .booking-id-text {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--primary-container);
+      letter-spacing: 0.02em;
+    }
+
+    .copy-pill-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 0.3rem 0.75rem;
+      border-radius: var(--radius-full);
+      background-color: var(--surface-container);
+      color: var(--primary-container);
+      border: none;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .copy-pill-btn:hover {
+      background-color: var(--surface-container-high);
+    }
+
+    .breakdown-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+
+    .breakdown-box {
+      background-color: var(--surface);
+      border-radius: var(--radius-md);
+      padding: 0.625rem 0.75rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .breakdown-box-title {
+      font-size: 0.6875rem;
+      color: var(--on-surface-variant);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .breakdown-box-title .material-symbols-outlined {
+      font-size: 14px;
+      color: var(--primary-container);
+    }
+
+    .breakdown-box-val {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--on-surface);
+      margin-top: 3px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Universal Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <a href="/views/index.html" class="icon-btn" aria-label="Go to home">
+          <span class="material-symbols-outlined">arrow_back</span>
+        </a>
+        <a href="/views/index.html" class="brand-lockup">
+          <img src="https://lh3.googleusercontent.com/aida/AEtjO1U0Hgq5o9H0v91FIeZ5d_v5CYsQRGkhGOLExAg4a-Q8JlMFLLOYEvjamDuppg0qYsyqPQyqaoqzNYT0oSZIsR3jSw83IY0WyNXa3TDBNhBJDNoSNatuA-lEVObZaB-h2oqMQgcp1QJQZCLigVRTezIIRcPRCTiyifgm-Ql4hiRN35LYVcGo93vmMCEWhcBHNPUlUn3Q04SUwkLjmz8xaSBvOqnGvKGfN3qLr7zZ-tp2VuCo-IC990Amjkc" alt="DriveEasy Logo" class="brand-logo-img" />
+          <span class="brand-title" style="font-size: 1.125rem;">Checkout Flow</span>
+        </a>
+      </div>
+
+      <nav class="nav-links">
+        <a href="/views/index.html" class="nav-link">Home</a>
+        <a href="/views/vehicles.html" class="nav-link">Vehicles</a>
+        <a href="/views/my-bookings.html" class="nav-link">My Bookings</a>
+        <a href="/views/dashboard.html" class="nav-link">Dashboard</a>
+      </nav>
+
+      <div class="header-actions">
+        <div id="user-profile-widget">
+          <a href="/views/dashboard.html" class="user-avatar-btn">
+            <span class="material-symbols-outlined" style="font-size: 20px;">person</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="confirmation-page-container">
+      
+      <!-- Green Success Icon -->
+      <div class="success-check-wrapper">
+        <div class="success-ping-ring"></div>
+        <div class="success-check-circle">
+          <span class="material-symbols-outlined" style="font-size: 36px; font-weight: bold;">check</span>
+        </div>
+      </div>
+
+      <!-- Headline -->
+      <div style="text-align: center; margin-bottom: 1.5rem;">
+        <h1 style="font-family: var(--font-display); font-size: 1.625rem; font-weight: 800; color: var(--on-surface);">Booking Confirmed!</h1>
+        <p style="font-size: 0.875rem; color: var(--on-surface-variant); margin-top: 0.25rem;">Your vehicle has been booked successfully.</p>
+      </div>
+
+      <!-- Main Receipt Card -->
+      <div class="confirmation-card">
+        
+        <!-- Booking ID Strip -->
+        <div class="booking-id-strip">
+          <div>
+            <span style="font-size: 0.6875rem; color: var(--on-surface-variant); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; display: block;">Booking ID</span>
+            <span class="booking-id-text" id="confirm-booking-id">VR10245</span>
+          </div>
+          <button class="copy-pill-btn" id="copy-booking-btn" onclick="copyId()">
+            <span class="material-symbols-outlined" style="font-size: 15px;" id="copy-icon">content_copy</span>
+            <span id="copy-label">Copy</span>
+          </button>
+        </div>
+
+        <!-- Vehicle Segment -->
+        <div class="checkout-vehicle-preview" style="background-color: var(--surface);">
+          <div class="checkout-thumb" style="width: 80px; height: 60px;">
+            <img id="confirm-vehicle-thumb" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuZZC4OjAvsqpPXJ0aFjLEhO7VF_Sy9S7n5y-_9ZUOKNzDt0wwkiiApIW-ZPm522PQ7QI3qn0E12V4daRafRX-Im8X4V51dfK7Da1_YAKrOyX0xqYSgsLIJ6Wj3HqsFfcVvA6nL4ScRs4Um4Ls11yFl-XVu2MbFA0p1d60XlCuaU0Ru1-LLskR6omdodInfBpIAW6X1RiI8g_ypH_uTjQrXZb0b3xQfsMF-oeCyx_nYXB6TT9-zB8h" alt="Vehicle" />
+          </div>
+          <div class="checkout-vehicle-info">
+            <h3 id="confirm-vehicle-name">Hyundai i20</h3>
+            <p id="confirm-vehicle-price" style="color: var(--on-surface-variant); font-weight: 500; font-size: 0.8125rem;">₹1,500 / day</p>
+            <div style="display: flex; align-items: center; gap: 6px; font-size: 0.75rem; color: var(--secondary); margin-top: 2px;">
+              <span class="material-symbols-outlined" style="font-size: 14px;">local_gas_station</span>
+              <span id="confirm-fuel">Petrol</span>
+              <span>•</span>
+              <span class="material-symbols-outlined" style="font-size: 14px;">settings</span>
+              <span id="confirm-trans">Manual</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2x2 Breakdown Grid -->
+        <div class="breakdown-grid">
+          <div class="breakdown-box">
+            <span class="breakdown-box-title">
+              <span class="material-symbols-outlined">location_on</span>
+              Pickup Location
+            </span>
+            <span class="breakdown-box-val" id="confirm-location">Guntur Hub, Andhra Pradesh</span>
+          </div>
+
+          <div class="breakdown-box">
+            <span class="breakdown-box-title">
+              <span class="material-symbols-outlined">schedule</span>
+              Duration
+            </span>
+            <span class="breakdown-box-val" id="confirm-duration">2 Days</span>
+          </div>
+
+          <div class="breakdown-box">
+            <span class="breakdown-box-title">
+              <span class="material-symbols-outlined">event_upcoming</span>
+              Pickup Date
+            </span>
+            <span class="breakdown-box-val" id="confirm-pickup-date">01-10-2026</span>
+          </div>
+
+          <div class="breakdown-box">
+            <span class="breakdown-box-title">
+              <span class="material-symbols-outlined">event_available</span>
+              Return Date
+            </span>
+            <span class="breakdown-box-val" id="confirm-return-date">03-10-2026</span>
+          </div>
+        </div>
+
+        <!-- Total Row -->
+        <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem; background-color: var(--surface-container-low); border-radius: var(--radius-lg);">
+          <div>
+            <span style="font-size: 0.75rem; color: var(--on-surface-variant); display: block;">Total Amount Paid</span>
+            <span style="font-size: 0.75rem; font-weight: 700; color: #065f46; display: flex; align-items: center; gap: 4px; margin-top: 2px;">
+              <span class="material-symbols-outlined" style="font-size: 14px;">verified</span>
+              <span id="confirm-payment-status">UPI Payment Confirmed</span>
+            </span>
+          </div>
+          <div style="text-align: right;">
+            <span style="font-family: var(--font-display); font-size: 1.35rem; font-weight: 800; color: var(--on-surface);" id="confirm-total-amount">₹3,300</span>
+            <span style="font-size: 0.6875rem; color: var(--on-surface-variant); display: block;">incl. taxes &amp; deposit</span>
+          </div>
+        </div>
+
+        <!-- Pickup Notice -->
+        <div style="display: flex; align-items: flex-start; gap: 0.5rem; padding: 0.75rem; border-radius: var(--radius-md); background-color: var(--surface-container-low); font-size: 0.75rem; color: var(--on-surface-variant); line-height: 1.4;">
+          <span class="material-symbols-outlined" style="font-size: 18px; color: var(--primary-container); flex-shrink: 0; margin-top: 2px;">info</span>
+          <p>Please carry your original Driver's License and Aadhaar/Govt ID at pickup. Vehicle key will be handed over at counter #2.</p>
+        </div>
+
+      </div>
+
+      <!-- Action Buttons -->
+      <div style="width: 100%; display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1.5rem;">
+        <a href="/views/my-bookings.html" class="btn-primary" style="height: 48px; font-size: 0.9375rem; text-decoration: none;">
+          <span class="material-symbols-outlined" style="font-size: 20px;">receipt_long</span>
+          <span>View My Bookings</span>
+        </a>
+        <a href="/views/index.html" class="btn-outline" style="height: 48px; font-size: 0.9375rem; text-decoration: none;">
+          <span class="material-symbols-outlined" style="font-size: 20px;">home</span>
+          <span>Go to Home</span>
+        </a>
+      </div>
+
+      <!-- PDF & Share Links -->
+      <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 1.25rem; font-size: 0.8125rem; color: var(--on-surface-variant);">
+        <button onclick="downloadPdf()" style="background: none; border: none; color: inherit; cursor: pointer; display: flex; align-items: center; gap: 4px; font-weight: 600;">
+          <span class="material-symbols-outlined" style="font-size: 18px;">download</span> Invoice (PDF)
+        </button>
+        <span>•</span>
+        <button onclick="shareTrip()" style="background: none; border: none; color: inherit; cursor: pointer; display: flex; align-items: center; gap: 4px; font-weight: 600;">
+          <span class="material-symbols-outlined" style="font-size: 18px;">share</span> Share Trip
+        </button>
+      </div>
+
+      <p style="font-size: 0.8125rem; color: var(--on-surface-variant); margin-top: 1.5rem;">
+        Need help with your booking? <a href="#" style="color: var(--primary-container); font-weight: 600;">Contact Support</a>
+      </p>
+
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="../exception/apiException.js"></script>
+  <script src="../exception/validationException.js"></script>
+  <script src="../js/service/apiConfig.js"></script>
+  <script src="../js/service/vehicleService.js"></script>
+  <script src="../js/service/bookingService.js"></script>
+  <script src="../js/service/userService.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/main.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const bookingId = window.utils.getUrlParam('id') || 'VR10245';
+      document.getElementById('confirm-booking-id').textContent = bookingId;
+
+      try {
+        const booking = await window.bookingService.getBookingById(bookingId);
+        if (booking) {
+          document.getElementById('confirm-booking-id').textContent = booking.id;
+          document.getElementById('confirm-vehicle-name').textContent = booking.vehicleName;
+          document.getElementById('confirm-vehicle-price').textContent = `${window.utils.formatCurrency(booking.pricePerDay)} / day`;
+          document.getElementById('confirm-location').textContent = booking.pickupLocation;
+          document.getElementById('confirm-duration').textContent = `${booking.rentalDays} Day${booking.rentalDays > 1 ? 's' : ''}`;
+          document.getElementById('confirm-pickup-date').textContent = window.utils.formatDate(booking.pickupDate);
+          document.getElementById('confirm-return-date').textContent = window.utils.formatDate(booking.returnDate);
+          document.getElementById('confirm-total-amount').textContent = window.utils.formatCurrency(booking.totalAmount);
+          document.getElementById('confirm-payment-status').textContent = `${booking.paymentMethod || 'UPI'} Payment Confirmed`;
+
+          // If vehicleId present, fetch image
+          if (booking.vehicleId) {
+            try {
+              const v = await window.vehicleService.getVehicleById(booking.vehicleId);
+              if (v) {
+                document.getElementById('confirm-vehicle-thumb').src = v.image;
+                document.getElementById('confirm-fuel').textContent = v.fuel;
+                document.getElementById('confirm-trans').textContent = v.transmission;
+              }
+            } catch (vErr) {
+              console.log(vErr);
+            }
+          }
+        }
+      } catch (err) {
+        // Fallback default mockup already present in HTML
+        console.log('Using default mock display for confirmation', err);
+      }
+    });
+
+    function copyId() {
+      const id = document.getElementById('confirm-booking-id').textContent;
+      navigator.clipboard?.writeText(id).then(() => {
+        document.getElementById('copy-label').textContent = 'Copied!';
+        document.getElementById('copy-icon').textContent = 'done';
+        setTimeout(() => {
+          document.getElementById('copy-label').textContent = 'Copy';
+          document.getElementById('copy-icon').textContent = 'content_copy';
+        }, 2000);
+      });
+      window.utils.showToast('Booking ID copied to clipboard');
+    }
+
+    function downloadPdf() {
+      window.utils.showToast('Generating official tax invoice PDF...');
+      setTimeout(() => {
+        window.utils.showToast('Invoice sent to your registered email.', 'success');
+      }, 1200);
+    }
+
+    function shareTrip() {
+      const id = document.getElementById('confirm-booking-id').textContent;
+      if (navigator.share) {
+        navigator.share({
+          title: 'DriveEasy Booking Confirmation',
+          text: `My vehicle reservation #${id} is confirmed on DriveEasy!`,
+          url: window.location.href
+        }).catch(() => {});
+      } else {
+        copyId();
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+/* ==========================================================================
+   My Bookings Page Styles
+   Matching Google Stitch imported screen 6 (My Bookings Page)
+   ========================================================================== */
+
+.my-bookings-container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 1.25rem 1rem 4rem;
+}
+
+.bookings-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.bookings-page-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--on-surface);
+}
+
+.bookings-sub {
+  font-size: 0.8125rem;
+  color: var(--on-surface-variant);
+}
+
+.trips-count-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-full);
+  background-color: var(--surface-container);
+  color: var(--primary-container);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.trips-count-badge .material-symbols-outlined {
+  font-size: 18px;
+}
+
+/* Status Filter Segmented Buttons */
+.booking-filters-scroll {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.25rem;
+  scrollbar-width: none;
+}
+
+.booking-filters-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.booking-filter-btn {
+  padding: 0.5rem 1.125rem;
+  border-radius: var(--radius-full);
+  background-color: var(--surface-container-lowest);
+  color: var(--on-surface-variant);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+.booking-filter-btn:hover {
+  background-color: var(--surface-container-low);
+}
+
+.booking-filter-btn.active {
+  background-color: var(--primary-container);
+  color: var(--on-primary);
+  border-color: var(--primary-container);
+  box-shadow: 0 2px 6px rgba(20, 99, 232, 0.25);
+}
+
+/* Booking Card Item */
+.booking-card-item {
+  background-color: var(--surface-container-lowest);
+  border-radius: var(--radius-xl);
+  padding: 1rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  margin-bottom: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.booking-card-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.booking-card-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.booking-media-thumb {
+  width: 96px;
+  height: 80px;
+  border-radius: var(--radius-lg);
+  background-color: var(--surface-container-low);
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.booking-media-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.thumb-tag {
+  position: absolute;
+  bottom: 4px;
+  left: 4px;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--on-surface);
+}
+
+.booking-info-col {
+  flex: 1;
+  min-width: 0;
+}
+
+.booking-name-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.booking-vehicle-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--on-surface);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.booking-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  margin-top: 0.15rem;
+}
+
+.booking-price-val {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--primary-container);
+}
+
+.booking-price-tag {
+  font-size: 0.75rem;
+  color: var(--on-surface-variant);
+}
+
+.booking-receipt-id {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--on-surface-variant);
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-top: 0.25rem;
+}
+
+.booking-receipt-id .material-symbols-outlined {
+  font-size: 15px;
+  color: var(--outline);
+}
+
+/* Dates Bar inside card */
+.booking-dates-strip {
+  background-color: var(--surface-container-low);
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8125rem;
+  color: var(--on-surface-variant);
+}
+
+.booking-dates-strip .material-symbols-outlined {
+  font-size: 16px;
+  color: var(--primary-container);
+  margin-right: 0.35rem;
+}
+
+.booking-days-badge {
+  background-color: var(--surface-container-lowest);
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--on-surface);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+/* Actions */
+.booking-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-top: 0.25rem;
+}
+
+.booking-actions-row button {
+  flex: 1;
+  height: 40px;
+}

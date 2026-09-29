@@ -1,0 +1,5 @@
+Deploy this ZIP as a Vercel project. Root Directory: .
+Build Command: npm run build
+Output Directory: dist
+Install Command: npm install
+The project includes a Vercel serverless API at /api/[...path].js.

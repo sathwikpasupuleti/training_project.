@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DriveEasy - My Bookings</title>
+  <meta name="description" content="View and manage your self-drive vehicle reservations on DriveEasy." />
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/bookings.css" />
+</head>
+<body>
+
+  <!-- Universal Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <a href="/views/index.html" class="brand-lockup">
+        <img src="https://lh3.googleusercontent.com/aida/AEtjO1U0Hgq5o9H0v91FIeZ5d_v5CYsQRGkhGOLExAg4a-Q8JlMFLLOYEvjamDuppg0qYsyqPQyqaoqzNYT0oSZIsR3jSw83IY0WyNXa3TDBNhBJDNoSNatuA-lEVObZaB-h2oqMQgcp1QJQZCLigVRTezIIRcPRCTiyifgm-Ql4hiRN35LYVcGo93vmMCEWhcBHNPUlUn3Q04SUwkLjmz8xaSBvOqnGvKGfN3qLr7zZ-tp2VuCo-IC990Amjkc" alt="DriveEasy Logo" class="brand-logo-img" />
+        <div class="brand-text-container">
+          <span class="brand-title">DriveEasy</span>
+          <span class="brand-subtitle">My Bookings</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="/views/index.html" class="nav-link">Home</a>
+        <a href="/views/vehicles.html" class="nav-link">Vehicles</a>
+        <a href="/views/my-bookings.html" class="nav-link active">My Bookings</a>
+        <a href="/views/dashboard.html" class="nav-link">Dashboard</a>
+      </nav>
+
+      <div class="header-actions">
+        <button aria-label="Search" class="icon-btn" title="Search">
+          <span class="material-symbols-outlined">search</span>
+        </button>
+        <div id="user-profile-widget">
+          <a href="/views/dashboard.html" class="user-avatar-btn">
+            <span class="material-symbols-outlined" style="font-size: 20px;">person</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="my-bookings-container">
+
+      <!-- Headline & Mini Stats Strip -->
+      <div class="bookings-header-row">
+        <div>
+          <h1 class="bookings-page-title">My Bookings</h1>
+          <p class="bookings-sub">Manage your reservations &amp; trips</p>
+        </div>
+        <div class="trips-count-badge" id="trips-count-badge">
+          <span class="material-symbols-outlined">verified</span>
+          <span id="trips-count-text">4 Trips Total</span>
+        </div>
+      </div>
+
+      <!-- Segmented Status Filter Buttons -->
+      <div class="booking-filters-scroll" id="booking-filters">
+        <button class="booking-filter-btn active" data-filter="all" id="filter-all-btn">All (4)</button>
+        <button class="booking-filter-btn" data-filter="active" id="filter-active-btn">Active (1)</button>
+        <button class="booking-filter-btn" data-filter="confirmed" id="filter-confirmed-btn">Confirmed (1)</button>
+        <button class="booking-filter-btn" data-filter="completed" id="filter-completed-btn">Completed (1)</button>
+        <button class="booking-filter-btn" data-filter="cancelled" id="filter-cancelled-btn">Cancelled (1)</button>
+      </div>
+
+      <!-- Bookings Cards Container -->
+      <div id="bookings-list-container">
+        <div style="text-align: center; padding: 3rem 1rem; color: var(--secondary);">
+          Loading your reservations...
+        </div>
+      </div>
+
+      <!-- Empty State -->
+      <div id="bookings-empty-state" class="empty-state-box" style="display: none;">
+        <div class="empty-state-icon">
+          <span class="material-symbols-outlined">no_crash</span>
+        </div>
+        <h3 style="font-family: var(--font-display); font-size: 1.125rem; font-weight: 700;">No Bookings Found</h3>
+        <p style="color: var(--secondary); max-width: 300px; font-size: 0.875rem; margin-top: 0.25rem;">
+          You do not have any bookings matching this filter category right now.
+        </p>
+        <a href="/views/vehicles.html" class="btn-primary" style="margin-top: 1rem; text-decoration: none;">
+          Explore Vehicles
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Interactive Cancel Reservation Dialog -->
+  <div id="cancel-dialog" class="modal-backdrop">
+    <div class="modal-card" style="max-width: 400px; text-align: center;">
+      <div style="width: 52px; height: 52px; border-radius: 50%; background-color: var(--error-container); color: var(--error); display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+        <span class="material-symbols-outlined" style="font-size: 30px;">warning</span>
+      </div>
+      <div>
+        <h3 style="font-family: var(--font-display); font-size: 1.125rem; font-weight: 700; color: var(--on-surface);">Cancel Reservation?</h3>
+        <p style="font-size: 0.8125rem; color: var(--secondary); margin-top: 0.5rem; line-height: 1.5;">
+          Are you sure you want to cancel booking <strong id="modal-cancel-id" style="color: var(--on-surface);">VR10245</strong>? The free cancellation policy is active and a full refund will be processed.
+        </p>
+      </div>
+      <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+        <button id="modal-keep-btn" class="btn-outline" style="flex: 1; height: 42px;">Keep Booking</button>
+        <button id="modal-confirm-cancel-btn" class="btn-danger" style="flex: 1; height: 42px;">Yes, Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Bottom Navigation Bar -->
+  <nav class="bottom-nav">
+    <a href="/views/index.html" class="bottom-nav-item" data-path="home">
+      <span class="material-symbols-outlined">home</span>
+      <span>Home</span>
+    </a>
+    <a href="/views/vehicles.html" class="bottom-nav-item" data-path="vehicles">
+      <span class="material-symbols-outlined">directions_car</span>
+      <span>Vehicles</span>
+    </a>
+    <a href="/views/my-bookings.html" class="bottom-nav-item active" data-path="my-bookings">
+      <span class="material-symbols-outlined">calendar_month</span>
+      <span>Bookings</span>
+    </a>
+    <a href="/views/dashboard.html" class="bottom-nav-item" data-path="dashboard">
+      <span class="material-symbols-outlined">dashboard</span>
+      <span>Dashboard</span>
+    </a>
+  </nav>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="../exception/apiException.js"></script>
+  <script src="../exception/validationException.js"></script>
+  <script src="../js/service/apiConfig.js"></script>
+  <script src="../js/service/vehicleService.js"></script>
+  <script src="../js/service/bookingService.js"></script>
+  <script src="../js/service/userService.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/my-bookings.js"></script>
+</body>
+</html>

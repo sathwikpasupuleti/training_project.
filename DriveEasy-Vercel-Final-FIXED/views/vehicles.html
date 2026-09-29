@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DriveEasy - Available Fleets | Browse Vehicles</title>
+  <meta name="description" content="Explore verified, sanitized rental cars, bikes, and scooters with DriveEasy." />
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/vehicles.css" />
+</head>
+<body>
+
+  <!-- Universal Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <a href="/views/index.html" class="brand-lockup">
+        <img src="https://lh3.googleusercontent.com/aida/AEtjO1U0Hgq5o9H0v91FIeZ5d_v5CYsQRGkhGOLExAg4a-Q8JlMFLLOYEvjamDuppg0qYsyqPQyqaoqzNYT0oSZIsR3jSw83IY0WyNXa3TDBNhBJDNoSNatuA-lEVObZaB-h2oqMQgcp1QJQZCLigVRTezIIRcPRCTiyifgm-Ql4hiRN35LYVcGo93vmMCEWhcBHNPUlUn3Q04SUwkLjmz8xaSBvOqnGvKGfN3qLr7zZ-tp2VuCo-IC990Amjkc" alt="DriveEasy Logo" class="brand-logo-img" />
+        <div class="brand-text-container">
+          <span class="brand-title">DriveEasy</span>
+          <span class="brand-subtitle">Vehicles</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="/views/index.html" class="nav-link">Home</a>
+        <a href="/views/vehicles.html" class="nav-link active">Vehicles</a>
+        <a href="/views/my-bookings.html" class="nav-link">My Bookings</a>
+        <a href="/views/dashboard.html" class="nav-link">Dashboard</a>
+      </nav>
+
+      <div class="header-actions">
+        <button aria-label="Search" class="icon-btn" title="Focus Search">
+          <span class="material-symbols-outlined">search</span>
+        </button>
+        <div id="user-profile-widget">
+          <a href="/views/login.html" class="user-avatar-btn" title="Sign In">
+            <span class="material-symbols-outlined" style="font-size: 20px;">person</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="vehicles-page-container">
+
+      <!-- Sticky Search & Filter Sub-Header -->
+      <section class="sticky-filter-header">
+        <div class="filter-header-top">
+          <div>
+            <h1 class="fleet-title">Available Fleets</h1>
+            <p class="fleet-sub">Verified sanitized rides ready near you</p>
+          </div>
+          <span class="fleet-count-badge" id="fleet-count-badge">
+            <span style="width: 6px; height: 6px; border-radius: 50%; background-color: var(--primary-container);"></span>
+            <span id="fleet-count-text">Loading...</span>
+          </span>
+        </div>
+
+        <!-- Search Input & Filter Drawer Toggle -->
+        <div class="search-filter-row">
+          <div class="search-input-wrapper">
+            <span class="material-symbols-outlined">search</span>
+            <input type="text" id="vehicle-search-input" placeholder="Search hatchback, SUV, bikes, models..." autocomplete="off" />
+          </div>
+          <button id="toggle-filter-btn" class="filter-drawer-toggle" aria-label="Toggle Filters">
+            <span class="material-symbols-outlined" style="font-size: 20px; color: var(--primary-container);">tune</span>
+            <span>Filters</span>
+            <span class="dot"></span>
+          </button>
+        </div>
+
+        <!-- Category Quick-Pills -->
+        <div class="category-pills-scroll" id="category-pills">
+          <button class="cat-pill active" data-category="all">All</button>
+          <button class="cat-pill" data-category="Car">
+            <span class="material-symbols-outlined" style="font-size: 16px;">directions_car</span> Cars
+          </button>
+          <button class="cat-pill" data-category="Bike">
+            <span class="material-symbols-outlined" style="font-size: 16px;">two_wheeler</span> Bikes
+          </button>
+          <button class="cat-pill" data-category="Scooter">
+            <span class="material-symbols-outlined" style="font-size: 16px;">moped</span> Scooters
+          </button>
+          <button class="cat-pill" data-category="SUV">
+            <span class="material-symbols-outlined" style="font-size: 16px;">directions_car</span> SUVs
+          </button>
+          <button class="cat-pill" data-category="Van">
+            <span class="material-symbols-outlined" style="font-size: 16px;">airport_shuttle</span> Vans
+          </button>
+        </div>
+
+        <!-- Collapsible Advanced Filters Drawer -->
+        <div id="filter-drawer" class="advanced-filter-drawer">
+          <!-- Price Range -->
+          <div>
+            <span class="filter-section-label">Price Per Day</span>
+            <div class="price-range-grid" id="price-filters">
+              <button class="price-btn" data-min="0" data-max="1000">Under ₹1,000</button>
+              <button class="price-btn" data-min="1000" data-max="2000">₹1,000 - ₹2,000</button>
+              <button class="price-btn" data-min="2000" data-max="99999">₹2,000+</button>
+            </div>
+          </div>
+
+          <!-- Fuel, Transmission & Sorting Grid -->
+          <div class="filter-checkbox-group">
+            <div>
+              <span class="filter-section-label">Fuel Type</span>
+              <label class="checkbox-label">
+                <input type="checkbox" name="fuel" value="Petrol" checked /> Petrol
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="fuel" value="Diesel" checked /> Diesel
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="fuel" value="Electric" checked /> Electric
+              </label>
+            </div>
+
+            <div>
+              <span class="filter-section-label">Transmission</span>
+              <label class="checkbox-label">
+                <input type="checkbox" name="transmission" value="Manual" checked /> Manual
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="transmission" value="Automatic" checked /> Automatic
+              </label>
+            </div>
+          </div>
+
+          <!-- Sort Select -->
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span class="filter-section-label">Sort By</span>
+            <select id="sort-select" class="form-select" style="height: 40px; background-color: var(--surface-container-lowest);">
+              <option value="featured">Featured / Popular</option>
+              <option value="price-asc">Price: Low → High</option>
+              <option value="price-desc">Price: High → Low</option>
+              <option value="rating">Rating: High → Low</option>
+            </select>
+          </div>
+
+          <!-- Drawer Action Controls -->
+          <div class="filter-drawer-actions">
+            <button id="reset-filters-btn" class="btn-outline-sm" style="border: none; text-decoration: underline;">Reset all</button>
+            <button id="apply-filters-btn" class="btn-primary-sm">Apply Filters</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Vehicle Listing Main Grid -->
+      <section id="vehicles-grid" class="vehicles-listing-grid">
+        <!-- Dynamically rendered via vehicles.js -->
+        <div style="grid-column: 1 / -1; text-align: center; padding: 3rem 1rem; color: var(--secondary);">
+          Loading available fleet...
+        </div>
+      </section>
+
+      <!-- Empty State Container -->
+      <div id="no-results-box" class="empty-state-box" style="display: none;">
+        <div class="empty-state-icon">
+          <span class="material-symbols-outlined">no_crash</span>
+        </div>
+        <h3 style="font-family: var(--font-display); font-size: 1.125rem; font-weight: 700;">No vehicles match your search</h3>
+        <p style="color: var(--secondary); max-width: 320px; font-size: 0.875rem; margin-top: 0.25rem;">
+          Try adjusting your filter options or search term to discover available rides nearby.
+        </p>
+        <button id="clear-all-filters-btn" class="btn-primary" style="margin-top: 1rem;">
+          Clear All Filters
+        </button>
+      </div>
+
+      <!-- DriveEasy Zero-Deposit Assurance Banner -->
+      <div style="background-color: var(--surface-container-low); padding: 1.25rem; border-radius: var(--radius-xl); display: flex; align-items: center; gap: 1rem; margin-top: 2rem;">
+        <div style="width: 44px; height: 44px; border-radius: var(--radius-lg); background-color: var(--primary-container); color: #fff; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+          <span class="material-symbols-outlined" style="font-size: 24px;">shield_with_heart</span>
+        </div>
+        <div>
+          <h4 style="font-family: var(--font-display); font-size: 0.9375rem; font-weight: 700; color: var(--on-surface);">DriveEasy Zero-Deposit Assurance</h4>
+          <p style="font-size: 0.8125rem; color: var(--secondary); margin-top: 2px;">
+            All self-drive rentals include comprehensive bumper-to-bumper insurance and 24/7 nationwide on-road assistance.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Mobile Bottom Navigation Bar -->
+  <nav class="bottom-nav">
+    <a href="/views/index.html" class="bottom-nav-item" data-path="home">
+      <span class="material-symbols-outlined">home</span>
+      <span>Home</span>
+    </a>
+    <a href="/views/vehicles.html" class="bottom-nav-item active" data-path="vehicles">
+      <span class="material-symbols-outlined">directions_car</span>
+      <span>Vehicles</span>
+    </a>
+    <a href="/views/my-bookings.html" class="bottom-nav-item" data-path="my-bookings">
+      <span class="material-symbols-outlined">calendar_month</span>
+      <span>Bookings</span>
+    </a>
+    <a href="/views/dashboard.html" class="bottom-nav-item" data-path="dashboard">
+      <span class="material-symbols-outlined">dashboard</span>
+      <span>Dashboard</span>
+    </a>
+  </nav>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="../exception/apiException.js"></script>
+  <script src="../exception/validationException.js"></script>
+  <script src="../js/service/apiConfig.js"></script>
+  <script src="../js/service/vehicleService.js"></script>
+  <script src="../js/service/bookingService.js"></script>
+  <script src="../js/service/userService.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/vehicles.js"></script>
+</body>
+</html>

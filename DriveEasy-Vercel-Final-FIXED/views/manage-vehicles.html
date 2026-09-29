@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DriveEasy - Fleet Management | Manage Vehicles</title>
+  <meta name="description" content="Add, edit, update availability, and manage fleet vehicles." />
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/dashboard.css" />
+</head>
+<body>
+
+  <!-- Universal Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <a href="/views/index.html" class="brand-lockup">
+        <img src="https://lh3.googleusercontent.com/aida/AEtjO1U0Hgq5o9H0v91FIeZ5d_v5CYsQRGkhGOLExAg4a-Q8JlMFLLOYEvjamDuppg0qYsyqPQyqaoqzNYT0oSZIsR3jSw83IY0WyNXa3TDBNhBJDNoSNatuA-lEVObZaB-h2oqMQgcp1QJQZCLigVRTezIIRcPRCTiyifgm-Ql4hiRN35LYVcGo93vmMCEWhcBHNPUlUn3Q04SUwkLjmz8xaSBvOqnGvKGfN3qLr7zZ-tp2VuCo-IC990Amjkc" alt="DriveEasy Logo" class="brand-logo-img" />
+        <div class="brand-text-container">
+          <span class="brand-title">DriveEasy</span>
+          <span class="brand-subtitle">Vehicle Management</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="/views/index.html" class="nav-link">Home</a>
+        <a href="/views/vehicles.html" class="nav-link">Vehicles</a>
+        <a href="/views/my-bookings.html" class="nav-link">My Bookings</a>
+        <a href="/views/dashboard.html" class="nav-link active">Dashboard</a>
+      </nav>
+
+      <div class="header-actions">
+        <div id="user-profile-widget">
+          <a href="/views/dashboard.html" class="user-avatar-btn">
+            <span class="material-symbols-outlined" style="font-size: 20px;">person</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="dashboard-container">
+
+      <!-- Header Row -->
+      <div class="dash-header-row">
+        <div>
+          <h1 class="dash-title">Vehicle Management</h1>
+          <p class="dash-sub">Add, edit, or adjust availability across the entire fleet</p>
+        </div>
+        <button id="add-vehicle-btn" class="btn-primary">
+          <span class="material-symbols-outlined" style="font-size: 18px;">add</span>
+          <span>Add Vehicle</span>
+        </button>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <div class="admin-nav-tabs">
+        <a href="/views/dashboard.html" class="admin-tab-btn">
+          <span class="material-symbols-outlined" style="font-size: 18px;">dashboard</span>
+          <span>Dashboard</span>
+        </a>
+        <a href="/views/manage-vehicles.html" class="admin-tab-btn active">
+          <span class="material-symbols-outlined" style="font-size: 18px;">directions_car</span>
+          <span>Vehicles</span>
+          <span class="badge" id="manage-vehicles-count">0</span>
+        </a>
+        <a href="/views/manage-bookings.html" class="admin-tab-btn">
+          <span class="material-symbols-outlined" style="font-size: 18px;">calendar_month</span>
+          <span>Bookings</span>
+        </a>
+        <a href="/views/manage-users.html" class="admin-tab-btn">
+          <span class="material-symbols-outlined" style="font-size: 18px;">group</span>
+          <span>Users</span>
+        </a>
+      </div>
+
+      <!-- Vehicles Data Table Container -->
+      <div class="data-table-container">
+        
+        <!-- Toolbar with Search & Category Filter -->
+        <div class="table-toolbar">
+          <div style="position: relative; flex: 1; min-width: 200px;">
+            <span class="material-symbols-outlined" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--secondary); font-size: 18px;">search</span>
+            <input type="text" id="admin-search-vehicle" class="form-input" style="height: 38px; padding-left: 2rem;" placeholder="Search vehicle name or brand..." />
+          </div>
+
+          <div style="display: flex; gap: 0.5rem; align-items: center;">
+            <select id="admin-filter-category" class="form-select" style="height: 38px; width: 140px;">
+              <option value="all">All Categories</option>
+              <option value="Car">Car</option>
+              <option value="Bike">Bike</option>
+              <option value="Scooter">Scooter</option>
+              <option value="SUV">SUV</option>
+              <option value="Van">Van</option>
+            </select>
+
+            <select id="admin-filter-avail" class="form-select" style="height: 38px; width: 140px;">
+              <option value="all">All Status</option>
+              <option value="true">Available</option>
+              <option value="false">Unavailable</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Table -->
+        <div style="overflow-x: auto;">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Vehicle</th>
+                <th>Category</th>
+                <th>Price/Day</th>
+                <th>Fuel/Transmission</th>
+                <th>Location</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="vehicles-table-body">
+              <tr>
+                <td colspan="7" style="text-align: center; padding: 2rem; color: var(--secondary);">Loading vehicles...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Add / Edit Vehicle Modal Dialog -->
+  <div id="vehicle-modal" class="modal-backdrop">
+    <div class="modal-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--surface-container); padding-bottom: 0.75rem;">
+        <h3 id="modal-vehicle-title" style="font-family: var(--font-display); font-size: 1.125rem; font-weight: 700;">Add New Vehicle</h3>
+        <button id="modal-close-btn" style="background: none; border: none; cursor: pointer; color: var(--secondary);">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <form id="vehicle-form" onsubmit="event.preventDefault();">
+        <input type="hidden" id="veh-id" />
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+          <div class="form-group" style="margin-bottom: 0.5rem;">
+            <label class="form-label" for="veh-name">Vehicle Name</label>
+            <input type="text" id="veh-name" class="form-input" placeholder="e.g. Hyundai i20" required />
+          </div>
+          <div class="form-group" style="margin-bottom: 0.5rem;">
+            <label class="form-label" for="veh-brand">Brand</label>
+            <input type="text" id="veh-brand" class="form-input" placeholder="e.g. Hyundai" required />
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+          <div class="form-group" style="margin-bottom: 0.5rem;">
+            <label class="form-label" for="veh-model">Model / Variant</label>
+            <input type="text" id="veh-model" class="form-input" placeholder="e.g. Sportz" required />
+          </div>
+          <div class="form-group" style="margin-bottom: 0.5rem;">
+            <label class="form-label" for="veh-category">Category</label>
+            <select id="veh-category" class="form-select">
+              <option value="Car">Car</option>
+              <option value="Bike">Bike</option>
+              <option value="Scooter">Scooter</option>
+              <option value="SUV">SUV</option>
+              <option value="Van">Van</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.5rem;">
+          <div class="form-group" style="margin-bottom: 0.5rem;">
+            <label class="form-label" for="veh-price">Price/Day (₹)</label>
+            <input type="number" id="veh-price" class="form-input" placeholder="1500" required />
+          </div>
+          <div class="form-group" style="margin-bottom: 0.5rem;">
+            <label class="form-label" for="veh-fuel">Fuel</label>
+            <select id="veh-fuel" class="form-select">
+              <option value="Petrol">Petrol</option>
+              <option value="Diesel">Diesel</option>
+              <option value="Electric">Electric</option>
+            </select>
+          </div>
+          <div class="form-group" style="margin-bottom: 0.5rem;">
+            <label class="form-label" for="veh-trans">Transmission</label>
+            <select id="veh-trans" class="form-select">
+              <option value="Manual">Manual</option>
+              <option value="Automatic">Automatic</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+          <div class="form-group" style="margin-bottom: 0.5rem;">
+            <label class="form-label" for="veh-seats">Seats</label>
+            <input type="number" id="veh-seats" class="form-input" value="5" min="1" max="12" />
+          </div>
+          <div class="form-group" style="margin-bottom: 0.5rem;">
+            <label class="form-label" for="veh-location">Hub Location</label>
+            <input type="text" id="veh-location" class="form-input" value="Guntur Hub, Andhra Pradesh" required />
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 0.5rem;">
+          <label class="form-label" for="veh-image">Vehicle Image URL</label>
+          <input type="url" id="veh-image" class="form-input" placeholder="https://..." required />
+        </div>
+
+        <div class="form-group" style="margin-bottom: 0.75rem;">
+          <label class="form-label" for="veh-desc">Description</label>
+          <textarea id="veh-desc" class="form-textarea" placeholder="Vehicle features, condition, specs..."></textarea>
+        </div>
+
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
+          <label style="display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 0.8125rem; cursor: pointer;">
+            <input type="checkbox" id="veh-available" checked style="width: 18px; height: 18px; accent-color: var(--primary-container);" />
+            <span>Mark Available for Booking</span>
+          </label>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.5rem;">
+          <button type="button" id="modal-cancel-btn" class="btn-outline">Cancel</button>
+          <button type="submit" id="modal-save-btn" class="btn-primary">Save Vehicle</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="../exception/apiException.js"></script>
+  <script src="../exception/validationException.js"></script>
+  <script src="../js/service/apiConfig.js"></script>
+  <script src="../js/service/vehicleService.js"></script>
+  <script src="../js/service/bookingService.js"></script>
+  <script src="../js/service/userService.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/manage-vehicles.js"></script>
+</body>
+</html>

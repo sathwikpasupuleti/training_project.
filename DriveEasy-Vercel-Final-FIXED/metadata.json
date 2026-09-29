@@ -1,0 +1,6 @@
+{
+  "name": "DriveEasy - Vehicle Rental System",
+  "description": "Rent Your Ride, Your Way - Vehicle Rental System for cars, bikes, scooters, SUVs, and vans with full customer booking flow and admin management.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
